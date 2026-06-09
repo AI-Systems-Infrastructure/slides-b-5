@@ -250,7 +250,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 
 \begin{frame}{The cloud VM had a public IP}
     For a cloud VM, anyone on the internet could type that IP into their browser and reach our server, since a cloud VM is usually assigned a public IP address.
-    Our edge or self-hosted device sits on a home or office network usually does not enjoy this.
+    Our edge or self-hosted device, which sits on a home or office network, usually does not enjoy this.
 
     \begin{figure}[htpb]
         \begin{center}
@@ -414,7 +414,17 @@ location / {
     \end{enumerate}
 \end{frame}
 
-% TODO: Add a "What you should walk away with" slide
+\begin{frame}{What you should walk away with}
+    By the end of the exercise, you should be able to:
+    \begin{enumerate}
+        \item Understand edge computing and self-hosting, and when to choose them
+        \item Deploy the same container onto hardware you own
+        \item Make a device behind NAT reachable, and keep its data backed up
+    \end{enumerate}
+
+    \vspace{0.5em}
+    This closes Part B. You can now take an AI system from your own laptop to specialized hardware, containers, the cloud, and the edge.
+\end{frame}
 
 
 \appendix
