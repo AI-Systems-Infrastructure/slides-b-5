@@ -65,11 +65,13 @@
     \end{figure}
 \end{frame}
 
+
 \begin{frame}
 \tableofcontents[sectionstyle=show,
 subsectionstyle=show/shaded/hide,
 subsubsectionstyle=show/shaded/hide]
 \end{frame}
+
 
 
 \section{When the Cloud Is Not the Right Answer}
@@ -86,6 +88,7 @@ subsubsectionstyle=show/shaded/hide]
     \end{itemize}
 \end{frame}
 
+
 \begin{frame}{Two related ideas}
     \begin{block}{Edge computing}
         Runs computation near where data is generated or where users interact with the system, instead of in a faraway data center.
@@ -101,6 +104,7 @@ subsubsectionstyle=show/shaded/hide]
     Different concepts that come from different motivations, but they often overlap.
     A Raspberry Pi on our desk is both.
 \end{frame}
+
 
 
 \section{Edge and Self-Hosting}
@@ -124,6 +128,7 @@ subsubsectionstyle=show/shaded/hide]
     \end{block}
 \end{frame}
 
+
 \begin{frame}{Self-hosting in the wild}
     By definition we have been self-hosting throughout this course.
     Every time we ran our AI server on our laptop, that was a self-hosted service.
@@ -138,6 +143,7 @@ subsubsectionstyle=show/shaded/hide]
 
     The motivation is mostly the inverse of the cloud's selling points: ownership of the hardware, control over data, predictable cost, no vendor lock-in.
 \end{frame}
+
 
 
 \section{Edge and Self-Hosted in Practice}
@@ -155,6 +161,7 @@ subsubsectionstyle=show/shaded/hide]
     \vspace{0.5em}
     Once Docker is running, the deployment is identical.
 \end{frame}
+
 
 \begin{frame}{Picking hardware}
     \begin{figure}[htpb]
@@ -183,6 +190,7 @@ subsubsectionstyle=show/shaded/hide]
         \item Or build a home server from PC parts for any budget
     \end{itemize}
 \end{frame}
+
 
 \begin{frame}{Getting the OS on it}
     Unlike a cloud VM, our device does not arrive booted.
@@ -214,6 +222,7 @@ subsubsectionstyle=show/shaded/hide]
     An image built for x86-64 will not run on a Raspberry Pi with an ARM64 CPU.
 \end{frame}
 
+
 \begin{frame}{Multi-architecture images}
     Most popular images on Docker Hub publish builds for several architectures.
 
@@ -226,6 +235,7 @@ subsubsectionstyle=show/shaded/hide]
     \texttt{docker pull python:3.13} on a Pi pulls the ARM64 variant automatically.
     No extra flags needed.
 \end{frame}
+
 
 \begin{frame}[fragile]{Building for multiple architectures}
     Two options for our own images.
@@ -246,6 +256,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 \end{frame}
 
 
+
 \section{Getting Past NAT}
 
 \begin{frame}{The cloud VM had a public IP}
@@ -258,6 +269,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
         \end{center}
     \end{figure}
 \end{frame}
+
 
 \begin{frame}{How NAT hides us}
 \textbf{Network Address Translation (NAT)} is the trick that lets every device on a home network share a single public IP.
@@ -272,6 +284,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
     Outgoing connections work fine. Incoming connections do not.
     An AI API server has to accept incoming.
 \end{frame}
+
 
 \begin{frame}{CGNAT makes it worse}
 With \textbf{Carrier-grade NAT (CGNAT)}, the ISP itself does another layer of NAT in front of many customers.
@@ -295,6 +308,7 @@ With \textbf{Carrier-grade NAT (CGNAT)}, the ISP itself does another layer of NA
     \end{enumerate}
 \end{frame}
 
+
 \begin{frame}{Port forwarding and DDNS}
     If our ISP gives us a real public IP (no CGNAT):
 
@@ -311,6 +325,7 @@ With \textbf{Carrier-grade NAT (CGNAT)}, the ISP itself does another layer of NA
     Static public IP from the ISP, as a paid add-on, removes the need for DDNS. Availability varies.
 \end{frame}
 
+
 \begin{frame}{Cloud VM as a reverse proxy}
     If CGNAT blocks the direct route, borrow a public IP by renting a small cloud VM.
     Same reverse proxy from B.4, just pointing through a tunnel to our edge device.
@@ -324,6 +339,7 @@ With \textbf{Carrier-grade NAT (CGNAT)}, the ISP itself does another layer of NA
     Edge device opens an outgoing connection to the cloud VM through a VPN tunnel (usually \textbf{WireGuard}).
     Cloud VM's Nginx forwards through the tunnel instead of to a local container.
 \end{frame}
+
 
 \begin{frame}[fragile]{Pointing Nginx through the tunnel}
     Assume the cloud VM is \texttt{10.0.0.1} and the edge device is \texttt{10.0.0.2} on the WireGuard tunnel.
@@ -341,6 +357,7 @@ location / {
     Only change from B.4: \texttt{proxy\_pass} points to the tunnel address.
 \end{frame}
 
+
 \begin{frame}{IPv6, briefly}
     Many ISPs now provide IPv6 alongside IPv4.
     IPv6 has a large enough address space that every device can have its own globally routable address. No NAT.
@@ -352,6 +369,7 @@ location / {
     \vspace{0.5em}
     Catch: not all internet users have IPv6 yet, so we usually still need an IPv4 path through one of the options above.
 \end{frame}
+
 
 
 \section{Backups}
@@ -369,6 +387,7 @@ location / {
 
     If we are going to put real data on a self-hosted system, backups are part of our job.
 \end{frame}
+
 
 \begin{frame}{The 3-2-1 rule}
     \begin{block}{Keep}
@@ -390,6 +409,7 @@ location / {
 \end{frame}
 
 
+
 \section{Exercise}
 
 \begin{frame}{Self-host your AI server}
@@ -407,12 +427,14 @@ location / {
     \end{block}
 \end{frame}
 
+
 \begin{frame}{Extensions}
     \begin{enumerate}
         \item Set up periodic backups of the SQLite database. Simulate a file loss and restore from the backup
         \item Compare response time of the self-hosted server vs the cloud-VM version. Depending on your hardware and home network, self-hosted may be faster despite the cloud VM having professional infrastructure
     \end{enumerate}
 \end{frame}
+
 
 \begin{frame}{What you should walk away with}
     By the end of the exercise, you should be able to:
@@ -425,6 +447,7 @@ location / {
     \vspace{0.5em}
     This closes Part B. You can now take an AI system from your own laptop to specialized hardware, containers, the cloud, and the edge.
 \end{frame}
+
 
 
 \appendix
