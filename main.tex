@@ -23,7 +23,7 @@
 \institute{%
     \href{https://www.yanlincs.com}{www.yanlincs.com}
 }
-\date{September 1st, 2026}
+\date{November 16th, 2026}
 \usepackage{AAU}
 \AtBeginSubsection{}
 \setbeamertemplate{navigation symbols}{}
@@ -84,38 +84,96 @@ subsubsectionstyle=show/shaded/hide]
 \end{frame}
 
 
+\section{Introduction}
 
-\section{When the Cloud Is Not the Right Answer}
+\begin{frame}{Recap of Module B.4: Cloud Deployment}{What is the cloud?}
+  A computer or a specific computing service that we can access remotely over the internet.
 
-\begin{frame}{Recap: where we are}
-    In Module B.4 we deployed our AI server on a small cloud VM, gave it a domain name and an HTTPS certificate, and ended up with a real public AI service backed by infrastructure we did not have to own.
-
-    \vspace{0.5em}
-    Yet there are scenarios where running on a computer we have physical access to fits better than renting cloud capacity.
+  \begin{columns}[T]
+  \begin{column}{0.58\textwidth}
     \begin{itemize}
-        \item A smart camera that has to react in milliseconds, where a cloud round trip is too slow
-        \item An app processing medical scans we are not allowed to send to a third party
-        \item A long-running service where the cumulative cloud bill has crossed the price of just buying a small server
+      \item Usually, the hardware behind the cloud sits in \textbf{data centers}
+      \item Technically, a cloud computer can be used for almost anything a personal computer can do
+      \item The hardware and part of the software are owned and managed by someone else
     \end{itemize}
+  \end{column}
+
+  \begin{column}{0.4\textwidth}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=\linewidth]{cern-data-centre}
+            \caption*{Inside the CERN Data Centre, home to CERN's private cloud}
+        \end{center}
+    \end{figure}
+  \end{column}
+  \end{columns}
+
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Two related ideas}
+\begin{frame}{Recap of Module B.4: Cloud Deployment}{Cloud service models}
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.84\textheight,keepaspectratio]{module-b4-cloud-service-models}
+      \end{center}
+  \end{figure}
+
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Recap of Module B.4: Cloud Deployment}{Pros and cons of the cloud}
+  \begin{block}{Benefits for us developers}
+    \begin{itemize}
+      \item A new computer can be set up and ready to use within minutes
+      \item Pay for what we use, mitigate the need for purchasing hardware up front
+      \item We do not need to worry about the management of the hardware, network infrastructure, electricity, etc.
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Downsides for us developers}
+    \begin{itemize}
+      \item We never own the hardware and are subject to the cloud provider's pricing, terms, and conditions
+      \item Higher possibility of data breach and privacy violation
+      \item A system with a cloud component relies on a robust internet connection to be functional
+    \end{itemize}
+  \end{block}
+
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Module B.5: Edge Deployment}{Cases where we want to avoid cloud deployment}
+  Scenarios where running our system on a computer we own and/or have physical access to fits better than on the cloud.
+
+  \begin{itemize}
+    \item A smart camera that has to react in milliseconds, where a cloud round trip is too slow
+    \item An app processing medical scans we are not allowed to send to a third party
+    \item A long-running service where the cumulative cloud bill has crossed the price of just buying a small server
+  \end{itemize}
+
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Module B.5: Edge Deployment}{Two related ideas}
     \begin{block}{Edge computing}
-        Runs computation near where data is generated or where users interact with the system, instead of in a faraway data center.
-        Motivated by \emphasis{where} data and users are.
+      Runs computation near where data is generated or where users interact with the system, instead of in a faraway data center.
+      Motivated by \textbf{where} data and users are.
     \end{block}
 
     \begin{block}{Self-hosting}
-        Runs services on hardware we own and control, instead of renting capacity from a cloud provider.
-        Motivated by \emphasis{who} owns the hardware.
+        Runs services on hardware we own and control, instead of renting computers from a cloud provider.
+        Motivated by \textbf{who} owns the hardware.
     \end{block}
 
-    \vspace{0.3em}
-    Different concepts that come from different motivations, but they often overlap.
-    A Raspberry Pi on our desk is both.
+    Not exactly the same, but they often overlap.
+
 \note{
 }
 \end{frame}
@@ -124,67 +182,95 @@ subsubsectionstyle=show/shaded/hide]
 
 \section{Edge and Self-Hosting}
 
-\begin{frame}{Edge in the wild}
-    The edge is the boundary of the network, where data first appears or where a person hits a button.
 
-    \begin{itemize}
-        \item A surveillance camera detecting someone at the door
-        \item A self-driving car deciding whether to brake
-        \item A smartphone running on-device speech recognition
-    \end{itemize}
+\begin{frame}{Edge computing}{What is ``the edge''?}
+    The edge is the boundary of the network, where data is collected or users interact with the system.
 
-    \begin{block}{Why AI fits the edge}
-        \begin{itemize}
-            \item Latency drops, since the round trip to a data center disappears
-            \item Bandwidth use drops, since not much data travels back to the cloud
-            \item Privacy improves, since sensitive data never leaves the device
-            \item The system keeps working when the internet goes down
-        \end{itemize}
-    \end{block}
+    % TODO: Embed a new diagram, contrasting with b-4/figures/module-b4-network-diagram.pdf or b-4/figures/module-b4-cloud-computing.pdf, that emphasis the network's edge
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Self-hosting in the wild}
-    By definition we have been self-hosting throughout this course.
-    Every time we ran our AI server on our laptop, that was a self-hosted service.
+\begin{frame}{Edge computing}{Examples of edge computing}
+  Data collection, user interaction, and compute are done on the same hardware.
+  
+  \begin{itemize}
+    \item A surveillance camera detecting someone at the door
+    \item A self-driving car deciding whether to brake
+    \item A smartphone running on-device speech recognition
+  \end{itemize}
+\note{
+}
+\end{frame}
 
-    \begin{figure}[htpb]
-        \begin{center}
-            \includegraphics[width=0.3\textwidth]{diy_server_build}
-        \end{center}
-    \end{figure}
 
-    The only difference vs a real self-hosted setup is that we did not put the laptop on a shelf and leave it running 24/7.
+\begin{frame}{Edge computing}{Benefits of edge computing}
+  \begin{itemize}
+    \item \textbf{Latency:} the network round trip to a data center disappears
+    \item \textbf{Bandwidth:} little to no data travels to the cloud
+    \item \textbf{Privacy:} sensitive data never leaves the device
+    \item \textbf{Robustness:} the system keeps working when the internet goes down
+  \end{itemize}
 
-    The motivation is mostly the inverse of the cloud's selling points: ownership of the hardware, control over data, predictable cost, no vendor lock-in.
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Edge computing}{Benefits of edge computing}
+  % TODO: Embed two new diagram/image, constrasting cloud gaming vs. edge gaming (i.e., how normally even an online game does most of the compute on the user's gaming hardware and only a small amount of data is uploaded and processed on the cloud), reflecting the four benefits of edge computing above
+ \note{
+}
+\end{frame}
+
+
+\begin{frame}{Self-hosting}{What is self-hosting?}
+  Runs services on hardware we own and control.
+
+  % TODO: Embed 2-3 online images of representative examples of self-hosting. One of them is mine own: https://blog.yanlincs.com/homelab/nixos-home-server/server-photo.webp
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Self-hosting}{Benefits of self-hosting}
+  Besides the benefits of edge computing, we have:
+
+  \begin{itemize}
+    \item \textbf{Ownership:} It's your hardware and software; do whatever you want
+    \item \textbf{Customization:} Obscure setups that no cloud provider provides are possible
+    \item \textbf{Economy:} Reusing old hardware or running services long-term
+  \end{itemize}
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Self-hosting}{Rabbit hole of self-hosting}
+  % TODO: Embed at least 4 online images of people use self-hosting alternatives to common cloud services
 \note{
 }
 \end{frame}
 
 
 
-\section{Edge and Self-Hosted in Practice}
+\section{Practical Considerations}
 
-\begin{frame}{What changes vs the cloud VM}
-    For actually deploying our containers on edge and self-hosted devices, we can reuse most of the process from Module B.4.
-    What changes is everything that happens before installing Docker.
+\begin{frame}{Adding to the cloud deployment}
+  Hardware management is now our duty.
 
-    \begin{itemize}
-        \item Picking the hardware
-        \item Getting a working operating system on it
-        \item Dealing with the slightly different CPU than the cloud VM had
-    \end{itemize}
-
-    \vspace{0.5em}
-    Once Docker is running, the deployment is identical.
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.84\textheight,keepaspectratio]{module-b4-cloud-service-models}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Picking hardware}
+\begin{frame}{Common edge devices}
     \begin{figure}[htpb]
         \begin{center}
             \begin{subfigure}{0.3\textwidth}
@@ -198,89 +284,96 @@ subsubsectionstyle=show/shaded/hide]
             \end{subfigure}
 \hfill
             \begin{subfigure}{0.3\textwidth}
-                \includegraphics[width=\textwidth]{old_laptop_server}
-                \caption{Old laptop or desktop}
+              % TODO: Embed an image of smartphone
             \end{subfigure}
         \end{center}
     \end{figure}
 
     \begin{itemize}
-        \item Raspberry Pi 5: small, 3-15 W, runs full Linux, huge community
-        \item NVIDIA Jetson: small GPU on a Pi-sized board, for heavier on-device AI
-        \item Old laptop/desktop: more RAM, free, laptop has a built-in UPS
-        \item Or build a home server from PC parts for any budget
+      \item Raspberry Pi 5: small, 3--15 W, runs full Linux, huge community
+      \item NVIDIA Jetson: small GPU on a Pi-sized board, for heavier on-device AI
+      % TODO: Add the item for the smartphone
     \end{itemize}
+
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Getting the OS on it}
-    Unlike a cloud VM, our device does not arrive booted.
-    Each platform has an official imager.
+\begin{frame}{Common hardware for self-hosting}
+  % TODO: Similar figure structure to the above slide, embed 3 online images of common picks of hardware for self-hosting: old laptop, decommissioned desktop computers, or purposefully built, server-grade hardware
 
+  % TODO: add itemize for the above 3 picks
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Install operating system}
+  \begin{block}{Extra step compared to setting up the cloud}
     \begin{itemize}
-        \item Raspberry Pi: \emphasis{Raspberry Pi Imager} writes a preconfigured SD card
-        \item Jetson: \emphasis{JetPack SDK} ships an image with GPU drivers
-        \item Old x86 laptop or desktop: Ubuntu Server on a USB stick made with balenaEtcher
+      \item \textbf{Cloud virtual machine:} Most cloud providers provide one-click installation for mainstream operating systems
+      \item \textbf{Edge \& Self-hosting:} We need to prepare the installation media and install the operating system ourselves
     \end{itemize}
+  \end{block}
 
-    \vspace{0.5em}
-    Once the OS is up, our device is at the same starting line as the cloud VM.
-    The rest of the workflow is identical.
-\note{
-}
-\end{frame}
-
-
-\begin{frame}{The small caveat from B.2}
-    In Module B.2 we said a container image runs anywhere a runtime is installed.
-    We glossed over a small caveat: an image is built for a specific CPU architecture, and only runs on a machine with the same CPU architecture.
-
+  \begin{block}{Common operating system picks}
     \begin{itemize}
-        \item \emphasis{x86-64} (\texttt{amd64}): almost every desktop, laptop, and most cloud VMs
-        \item \emphasis{ARM64} (\texttt{aarch64}): smartphones, Raspberry Pi, Jetson, Apple Silicon Macs, and some cloud VMs
-        \item \emphasis{RISC-V}: newer, open-source, mostly microcontrollers today but growing fast
+      \item \textbf{Raspberry Pi:} \textit{Raspberry Pi Imager} writes a preconfigured SD card
+      \item \textbf{Jetson:} \textit{JetPack SDK} ships an image with GPU drivers
+      \item \textbf{Most x86 computers:} Linux installation media on a USB stick
     \end{itemize}
-
-    \vspace{0.5em}
-    An image built for x86-64 will not run on a Raspberry Pi with an ARM64 CPU.
+  \end{block}
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Multi-architecture images}
+\begin{frame}{Install operating system}{The typical OS installation process}
+% TODO: Embed a diagram roughly showing the process, from booting from a installation media, to finish installing the OS
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{CPU architecture}{A caveat to ``a container image works on any computer''}
+  Within computers that adhere to the von Neumann architecture, the \textbf{CPU architecture} can still affect whether a container image is compatible with a specific computer.
+
+  \begin{block}{Common CPU architectures}
+    \begin{itemize}
+      \item \emphasis{x86-64} (\texttt{amd64}): almost every desktop, laptop, and most cloud computers
+      \item \emphasis{ARM64} (\texttt{aarch64}): smartphones, Raspberry Pi, Jetson, Apple Silicon Macs, and some cloud computers
+      \item \emphasis{RISC-V}: newer, open-source, mostly microcontrollers
+    \end{itemize}
+  \end{block}
+
+  \vspace{1em}
+  \live{Cloud computers with different CPU architectures on Hetzner.}
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{CPU architecture}{Using multi-architecture images}
     Most popular images on Docker Hub publish builds for several architectures.
 
-    \begin{figure}[htpb]
-        \begin{center}
-            \includegraphics[width=0.55\textwidth]{docker-hub-platforms}
-        \end{center}
-    \end{figure}
-
-    \texttt{docker pull python:3.13} on a Pi pulls the ARM64 variant automatically.
-    No extra flags needed.
+    \live{The list of supported CPU architectures of the official Python container image.}
 \note{
 }
 \end{frame}
 
 
-\begin{frame}[fragile]{Building for multiple architectures}
-    Two options for our own images.
-
-    \begin{block}{Simple: build on the target}
-        SSH into the Pi, copy the project, run \texttt{docker build}.
-        Image comes out ARM64.
+\begin{frame}{CPU architecture}{Building multi-architecture images}
+    \begin{block}{Build on the target device}
+      \textit{Directly building the image on the target edge device} guarantees the built image is compatible with the CPU architecture that edge device has.
     \end{block}
 
-    \begin{block}{Sophisticated: Buildx, one machine, many archs}
+    \begin{block}{Build a multi-architecture image}
+      Use \texttt{buildx} to build an image that is compatible with multiple CPU architectures.
         \begin{minted}{bash}
 docker buildx build --platform linux/amd64,linux/arm64 \
     -t yourusername/my-ai-server:1.0 --push .
         \end{minted}
-        Builds the same Dockerfile for both, emulating the non-host architecture.
-        Pushes both variants under the same tag.
     \end{block}
 \note{
 }
@@ -288,191 +381,141 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 
 
 
-\section{Getting Past NAT}
+\section{Remote Access}
 
-\begin{frame}{The cloud VM had a public IP}
-    For a cloud VM, anyone on the internet could type that IP into their browser and reach our server, since a cloud VM is usually assigned a public IP address.
-    Our edge or self-hosted device, which sits on a home or office network, usually does not enjoy this.
+\begin{frame}{Edge devices are usually not directly accessible over the internet}
+  \begin{itemize}
+    \item \textbf{Cloud computers:} usually come with a \textit{public IP address} that is directly accessible over the internet
+    \item \textbf{Edge devices:} usually sit behind office or home local networks, and do not have a public IP address
+  \end{itemize}
 
-    \begin{figure}[htpb]
-        \begin{center}
-            \includegraphics[width=0.42\textwidth]{nat_diagram}
-        \end{center}
-    \end{figure}
+  % TODO: Embed a diagram replicating `nat_diagram`
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{How NAT hides us}
-\textbf{Network Address Translation (NAT)} is the trick that lets every device on a home network share a single public IP.
+\begin{frame}{The prime suspect: NAT}
+  \textbf{Network Address Translation (NAT)} lets every device on an office or home network share a single public IP.
 
-    \begin{itemize}
-        \item The router has a public IP from the ISP, shared by every device behind it
-        \item The router gives each connected device a private IP like \texttt{192.168.1.42}
-        \item Outgoing requests: router rewrites the source, remembers the connection in a table
-        \item Incoming requests: router has no idea where to send the request, so it drops it
-    \end{itemize}
+  \begin{itemize}
+    \item The router has a public IP from the ISP, shared by every device behind it
+    \item The router gives each connected device a private IP like \texttt{192.168.1.42}
+  \end{itemize}
 
-    Outgoing connections work fine. Incoming connections do not.
-    An AI API server has to accept incoming.
+  % TODO: Embed a new diagram showing how NAT works
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{CGNAT makes it worse}
-With \textbf{Carrier-grade NAT (CGNAT)}, the ISP itself does another layer of NAT in front of many customers.
-    Even the public IP our router thinks it has is shared with other users.
+\begin{frame}{The prime suspect: NAT}
+  \begin{itemize}
+    \item \textbf{Outgoing requests work fine} since the router remembers the connection in a table
+    \item \textbf{Incoming requests do not work} since the router has no idea where to send the request
+  \end{itemize}
 
-    \begin{itemize}
-        \item Almost always on mobile networks
-        \item Also increasingly common on fiber internet as IPv4 addresses run out
-    \end{itemize}
-
-    \vspace{0.5em}
-    Behind CGNAT, no amount of router configuration on our side will help.
+  % TODO: Embed a new diagram showing the above mechanism
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Three paths through NAT}
-    \begin{enumerate}
-\item \textbf{Port forwarding} plus \textbf{dynamic DNS}, if we have a real public IP
-\item Cloud VM as a reverse proxy through a \textbf{VPN tunnel}
-        \item Managed tunnel services
-    \end{enumerate}
+\begin{frame}{The prime suspect: NAT}{Even worse: CGNAT}
+  With \textbf{Carrier-grade NAT (CGNAT)}, the ISP itself does another layer of NAT in front of many customers. Even the router does not have a public IP address.
+
+  % TODO: Embed a new diagram showing how CGNAT works.
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Port forwarding and DDNS}
-    If our ISP gives us a real public IP (no CGNAT):
+\begin{frame}{Getting around NAT}
+  Suppose your ISP does not enforce CGNAT and your home network has a public IP address:
+  \begin{itemize}
+    \item \textbf{Port forwarding} plus \textbf{dynamic DNS (DDNS)}
+  \end{itemize}
 
-    \begin{block}{Port forwarding on the router}
-        Tell the router that incoming traffic on certain ports should go to a certain device.
-        Most routers have a settings page for this.
-    \end{block}
-
-    \begin{block}{Dynamic DNS}
-        Home IPs, even when public, are usually dynamic. They change every few weeks.
-        A small daemon on the device tells a DDNS provider the current IP, and the provider updates the DNS record.
-    \end{block}
-
-    Static public IP from the ISP, as a paid add-on, removes the need for DDNS. Availability varies.
+  \vspace{1em}
+  Works with or without CGNAT regardless:
+  \begin{itemize}
+    \item A cloud computer as a reverse proxy through a \textbf{VPN tunnel}
+    \item Managed tunnel services
+  \end{itemize}
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{Cloud VM as a reverse proxy}
-    If CGNAT blocks the direct route, borrow a public IP by renting a small cloud VM.
-    Same reverse proxy from B.4, just pointing through a tunnel to our edge device.
+\begin{frame}{Getting around NAT}{Port forwarding}
+  \begin{itemize}
+    \item Your router has a public IP address. It just does not know where to forward the incoming requests.
+    \item \textbf{Port forwarding} tells the router that incoming traffic on certain ports should go to a certain device.
+  \end{itemize}
 
-    \begin{figure}[htpb]
-        \begin{center}
-            \includegraphics[width=0.32\textwidth]{edge_topology}
-        \end{center}
-    \end{figure}
-
-    Edge device opens an outgoing connection to the cloud VM through a VPN tunnel (usually \textbf{WireGuard}).
-    Cloud VM's Nginx forwards through the tunnel instead of to a local container.
+  % TODO: Embed a new diagram showing how port forwarding works
 \note{
 }
 \end{frame}
 
 
-\begin{frame}[fragile]{Pointing Nginx through the tunnel}
-    Assume the cloud VM is \texttt{10.0.0.1} and the edge device is \texttt{10.0.0.2} on the WireGuard tunnel.
+\begin{frame}{Getting around NAT}{DDNS}
+  \begin{itemize}
+    \item Most public IP addresses the ISP gives us are dynamic and change every few weeks.
+    \item \textbf{Dynamic DNS (DDNS)} is a service running on a computer that automatically updates the DNS record to reflect the latest public IP address of a home network.
+  \end{itemize}
 
-    \begin{minted}{nginx}
-location / {
-    proxy_pass http://10.0.0.2:8000;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-}
-    \end{minted}
-
-    Only change from B.4: \texttt{proxy\_pass} points to the tunnel address.
+  % TODO: Embed a new diagram how DDNS works
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{IPv6, briefly}
-    Many ISPs now provide IPv6 alongside IPv4.
-    IPv6 has a large enough address space that every device can have its own globally routable address. No NAT.
+\begin{frame}{Getting around NAT}{Cloud computer as a reverse proxy}
+  Incoming network traffic goes to a cloud computer first, and is then forwarded to the edge device through \textbf{VPN tunnels}.
+  \begin{itemize}
+    \item Compute is mostly done on the edge device, with the cloud computer only performing lightweight network traffic routing
+    \item VPN tunnels themselves are fully encrypted, so any network traffic inside them is safe
+  \end{itemize}
 
-    \vspace{0.5em}
-    If both our device and the client device have IPv6, publish an \texttt{AAAA} DNS record pointing to the device's IPv6 address.
-    Connections work without any tunneling.
+  % TODO: Embed a new diagram, similar to b-4/figures/module-b4-reverse-proxy.pdf, but this time with the above setup
+\note{
+}
+\end{frame}
 
-    \vspace{0.5em}
-    Catch: not all internet users have IPv6 yet, so we usually still need an IPv4 path through one of the options above.
+
+\begin{frame}{Getting around NAT}{Cloud computer as a reverse proxy}
+  \live{My self-hosted \texttt{deluge} service setup.}
+
+  % TODO: Embed a diagram, showing how the setup of the deluge.yanlincs.com service works (see my nix repo)
+\note{
+}
+\end{frame}
+
+
+\begin{frame}{Getting around NAT}{Managed tunnels}
+  \begin{itemize}
+    \item Ready-to-use cloud proxy solutions. Technically similar to the above setup, but no need to manage our own cloud computers and no configurations needed
+    \item Examples: Cloudflare Tunnel, % TODO: Add 2 more examples
+  \end{itemize}
+
+  % TODO: Embed a new diagram showing how cloudflare tunnel works
 \note{
 }
 \end{frame}
 
 
 
-\section{Backups}
+\section{Conclusion}
 
-\begin{frame}{Backups are now our job}
-    On a cloud VM we usually get a baseline of reliability for free.
-    Most providers replicate the underlying disks, swap failed hardware, and let us snapshot the entire VM with a click of a button.
-    None of that is true on our own hardware.
-
-    \begin{itemize}
-        \item SD cards commonly have a high failure rate after a few years of heavy writes
-        \item Hard drives will die eventually
-        \item Laptops often get spilled on
-    \end{itemize}
-
-    If we are going to put real data on a self-hosted system, backups are part of our job.
-\note{
-}
-\end{frame}
-
-
-\begin{frame}{The 3-2-1 rule}
-    \begin{block}{Keep}
-        \begin{itemize}
-            \item At least 3 copies of the data
-            \item On 2 different storage media
-            \item With 1 copy stored offsite
-        \end{itemize}
-    \end{block}
-
-    \begin{block}{Why}
-        \begin{itemize}
-            \item If a single disk dies and takes one copy, the other two survive
-            \item If a fire or theft takes everything in the building, the offsite copy survives
-        \end{itemize}
-    \end{block}
-
-    Applied properly, the chance of losing data drops to a very small number.
-\note{
-}
-\end{frame}
-
-
-
-\section{Exercise}
-
-\begin{frame}{Self-host your AI server}
-    Take the image from Module B.3. Host it on hardware you own.
-    Make it publicly accessible.
-    The cloud VM from B.4 becomes the reverse proxy.
+\begin{frame}{Exercise: Self-host your AI server}
+    Take the image from Module B.3. Host it on hardware you own. Try making it publicly accessible.
 
     \begin{block}{Outline}
         \begin{enumerate}
-            \item Use your daily computer as the edge device, or use a "real" edge device if available
+            \item Use your daily computer as the edge device, or use a ``real'' edge device if available
             \item Get it online, install Docker, run the container. Verify the server's reachability from another local machine
-            \item Set up a VPN tunnel between the B.4 cloud VM and the device and point the Nginx proxy on the cloud VM to the edge device
+            \item Set up a VPN tunnel between the B.4 cloud computer and the device and point the Nginx proxy on the cloud VM to the edge device
             \item From outside your home network, point the A.2 client at the public URL
         \end{enumerate}
     \end{block}
@@ -481,30 +524,17 @@ location / {
 \end{frame}
 
 
-\begin{frame}{Extensions}
-    \begin{enumerate}
-        \item Set up periodic backups of the SQLite database. Simulate a file loss and restore from the backup
-        \item Compare response time of the self-hosted server vs the cloud-VM version. Depending on your hardware and home network, self-hosted may be faster despite the cloud VM having professional infrastructure
-    \end{enumerate}
+\begin{frame}{Important dates}
+  \begin{itemize}
+    \item \textbf{Mini-project hand-in:} December 7th, 2026
+    \item \textbf{Exam:} January 4th--5th, 2027
+  \end{itemize}
+
+  \vspace{1em}
+  Feel free to reach out through email anytime before (and after) the exam!
 \note{
 }
 \end{frame}
-
-
-\begin{frame}{What you should walk away with}
-    By the end of the exercise, you should be able to:
-    \begin{enumerate}
-        \item Understand edge computing and self-hosting, and when to choose them
-        \item Deploy the same container onto hardware you own
-        \item Make a device behind NAT reachable, and keep its data backed up
-    \end{enumerate}
-
-    \vspace{0.5em}
-    This closes Part B. You can now take an AI system from your own laptop to specialized hardware, containers, the cloud, and the edge.
-\note{
-}
-\end{frame}
-
 
 
 \appendix
