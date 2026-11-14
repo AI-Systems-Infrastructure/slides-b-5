@@ -186,7 +186,11 @@ subsubsectionstyle=show/shaded/hide]
 \begin{frame}{Edge computing}{What is ``the edge''?}
     The edge is the boundary of the network, where data is collected or users interact with the system.
 
-    % TODO: Embed a new diagram, contrasting with b-4/figures/module-b4-network-diagram.pdf or b-4/figures/module-b4-cloud-computing.pdf, that emphasis the network's edge
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\textwidth,height=0.66\textheight,keepaspectratio]{module-b5-network-edge}
+        \end{center}
+    \end{figure}
 \note{
 }
 \end{frame}
@@ -219,8 +223,18 @@ subsubsectionstyle=show/shaded/hide]
 
 
 \begin{frame}{Edge computing}{Benefits of edge computing}
-  % TODO: Embed two new diagram/image, constrasting cloud gaming vs. edge gaming (i.e., how normally even an online game does most of the compute on the user's gaming hardware and only a small amount of data is uploaded and processed on the cloud), reflecting the four benefits of edge computing above
- \note{
+  \begin{figure}[htpb]
+      \begin{center}
+          \begin{subfigure}{0.48\textwidth}
+              \includegraphics[width=\textwidth,height=0.79\textheight,keepaspectratio]{module-b5-cloud-gaming}
+          \end{subfigure}
+\hfill
+          \begin{subfigure}{0.48\textwidth}
+              \includegraphics[width=\textwidth,height=0.79\textheight,keepaspectratio]{module-b5-edge-gaming}
+          \end{subfigure}
+      \end{center}
+  \end{figure}
+\note{
 }
 \end{frame}
 
@@ -228,7 +242,27 @@ subsubsectionstyle=show/shaded/hide]
 \begin{frame}{Self-hosting}{What is self-hosting?}
   Runs services on hardware we own and control.
 
-  % TODO: Embed 2-3 online images of representative examples of self-hosting. One of them is mine own: https://blog.yanlincs.com/homelab/nixos-home-server/server-photo.webp
+  \begin{figure}[htpb]
+      \begin{center}
+          \begin{subfigure}[b]{0.3\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio]{self-hosting-yanlin}
+              \caption{My home server}
+          \end{subfigure}
+\hfill
+          \begin{subfigure}[b]{0.3\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio]{self-hosting-rack}
+              \caption{A home-lab rack}
+          \end{subfigure}
+\hfill
+          \begin{subfigure}[b]{0.3\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio]{self-hosting-nas}
+              \caption{A home NAS}
+          \end{subfigure}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -248,7 +282,46 @@ subsubsectionstyle=show/shaded/hide]
 
 
 \begin{frame}{Self-hosting}{Rabbit hole of self-hosting}
-  % TODO: Embed at least 4 online images of people use self-hosting alternatives to common cloud services
+  \begin{figure}[htpb]
+      \begin{center}
+          \begin{subfigure}{0.31\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.23\textheight,keepaspectratio]{selfhost-nextcloud}
+              \caption{Nextcloud instead of Google Drive}
+          \end{subfigure}
+\hfill
+          \begin{subfigure}{0.31\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.23\textheight,keepaspectratio]{selfhost-immich}
+              \caption{Immich instead of Google Photos}
+          \end{subfigure}
+\hfill
+          \begin{subfigure}{0.31\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.23\textheight,keepaspectratio]{selfhost-jellyfin}
+              \caption{Jellyfin instead of Netflix}
+          \end{subfigure}
+
+          \vspace{0.3em}
+          \begin{subfigure}{0.31\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.23\textheight,keepaspectratio]{selfhost-openwebui}
+              \caption{Open WebUI instead of ChatGPT}
+          \end{subfigure}
+\hfill
+          \begin{subfigure}{0.31\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.23\textheight,keepaspectratio]{selfhost-homeassistant}
+              \caption{Home Assistant instead of Google Home}
+          \end{subfigure}
+\hfill
+          \begin{subfigure}{0.31\textwidth}
+              \centering
+              \includegraphics[width=\textwidth,height=0.23\textheight,keepaspectratio]{selfhost-vaultwarden}
+              \caption{Vaultwarden instead of 1Password}
+          \end{subfigure}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -284,7 +357,8 @@ subsubsectionstyle=show/shaded/hide]
             \end{subfigure}
 \hfill
             \begin{subfigure}{0.3\textwidth}
-              % TODO: Embed an image of smartphone
+                \includegraphics[width=\textwidth]{smartphone}
+                \caption{Smartphone}
             \end{subfigure}
         \end{center}
     \end{figure}
@@ -292,7 +366,7 @@ subsubsectionstyle=show/shaded/hide]
     \begin{itemize}
       \item Raspberry Pi 5: small, 3--15 W, runs full Linux, huge community
       \item NVIDIA Jetson: small GPU on a Pi-sized board, for heavier on-device AI
-      % TODO: Add the item for the smartphone
+      \item Smartphone: in everyone's pocket, with an NPU for on-device AI
     \end{itemize}
 
 \note{
@@ -301,9 +375,33 @@ subsubsectionstyle=show/shaded/hide]
 
 
 \begin{frame}{Common hardware for self-hosting}
-  % TODO: Similar figure structure to the above slide, embed 3 online images of common picks of hardware for self-hosting: old laptop, decommissioned desktop computers, or purposefully built, server-grade hardware
+    \begin{figure}[htpb]
+        \begin{center}
+            \begin{subfigure}{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth,height=0.36\textheight,keepaspectratio]{old_laptop_server}
+                \caption{Old laptop}
+            \end{subfigure}
+\hfill
+            \begin{subfigure}{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth,height=0.36\textheight,keepaspectratio]{thin_client_server}
+                \caption{Decommissioned desktop}
+            \end{subfigure}
+\hfill
+            \begin{subfigure}{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth,height=0.36\textheight,keepaspectratio]{diy_server_build}
+                \caption{Server-grade build}
+            \end{subfigure}
+        \end{center}
+    \end{figure}
 
-  % TODO: add itemize for the above 3 picks
+    \begin{itemize}
+      \item Old laptop: free if you have one, low power, battery as backup power
+      \item Decommissioned desktop: cheap, quiet, room for more drives and memory
+      \item Server-grade build: ECC memory, many drive bays, but loud and power-hungry
+    \end{itemize}
 \note{
 }
 \end{frame}
@@ -330,7 +428,11 @@ subsubsectionstyle=show/shaded/hide]
 
 
 \begin{frame}{Install operating system}{The typical OS installation process}
-% TODO: Embed a diagram roughly showing the process, from booting from a installation media, to finish installing the OS
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.84\textheight,keepaspectratio]{module-b5-os-install}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -341,9 +443,9 @@ subsubsectionstyle=show/shaded/hide]
 
   \begin{block}{Common CPU architectures}
     \begin{itemize}
-      \item \emphasis{x86-64} (\texttt{amd64}): almost every desktop, laptop, and most cloud computers
-      \item \emphasis{ARM64} (\texttt{aarch64}): smartphones, Raspberry Pi, Jetson, Apple Silicon Macs, and some cloud computers
-      \item \emphasis{RISC-V}: newer, open-source, mostly microcontrollers
+      \item \textbf{x86-64} (\texttt{amd64}): almost every desktop, laptop, and most cloud computers
+      \item \textbf{ARM64} (\texttt{aarch64}): smartphones, Raspberry Pi, Jetson, Apple Silicon Macs, and some cloud computers
+      \item \textbf{RISC-V}: newer, open-source, mostly microcontrollers
     \end{itemize}
   \end{block}
 
@@ -357,13 +459,14 @@ subsubsectionstyle=show/shaded/hide]
 \begin{frame}{CPU architecture}{Using multi-architecture images}
     Most popular images on Docker Hub publish builds for several architectures.
 
+    \vspace{1em}
     \live{The list of supported CPU architectures of the official Python container image.}
 \note{
 }
 \end{frame}
 
 
-\begin{frame}{CPU architecture}{Building multi-architecture images}
+\begin{frame}[fragile]{CPU architecture}{Building multi-architecture images}
     \begin{block}{Build on the target device}
       \textit{Directly building the image on the target edge device} guarantees the built image is compatible with the CPU architecture that edge device has.
     \end{block}
@@ -389,7 +492,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
     \item \textbf{Edge devices:} usually sit behind office or home local networks, and do not have a public IP address
   \end{itemize}
 
-  % TODO: Embed a diagram replicating `nat_diagram`
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.55\textheight,keepaspectratio]{module-b5-nat-overview}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -403,7 +510,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
     \item The router gives each connected device a private IP like \texttt{192.168.1.42}
   \end{itemize}
 
-  % TODO: Embed a new diagram showing how NAT works
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.56\textheight,keepaspectratio]{module-b5-nat}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -415,7 +526,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
     \item \textbf{Incoming requests do not work} since the router has no idea where to send the request
   \end{itemize}
 
-  % TODO: Embed a new diagram showing the above mechanism
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.6\textheight,keepaspectratio]{module-b5-nat-incoming}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -424,7 +539,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 \begin{frame}{The prime suspect: NAT}{Even worse: CGNAT}
   With \textbf{Carrier-grade NAT (CGNAT)}, the ISP itself does another layer of NAT in front of many customers. Even the router does not have a public IP address.
 
-  % TODO: Embed a new diagram showing how CGNAT works.
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.66\textheight,keepaspectratio]{module-b5-cgnat}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -453,7 +572,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
     \item \textbf{Port forwarding} tells the router that incoming traffic on certain ports should go to a certain device.
   \end{itemize}
 
-  % TODO: Embed a new diagram showing how port forwarding works
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.55\textheight,keepaspectratio]{module-b5-port-forwarding}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -465,7 +588,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
     \item \textbf{Dynamic DNS (DDNS)} is a service running on a computer that automatically updates the DNS record to reflect the latest public IP address of a home network.
   \end{itemize}
 
-  % TODO: Embed a new diagram how DDNS works
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.6\textheight,keepaspectratio]{module-b5-ddns}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -478,7 +605,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
     \item VPN tunnels themselves are fully encrypted, so any network traffic inside them is safe
   \end{itemize}
 
-  % TODO: Embed a new diagram, similar to b-4/figures/module-b4-reverse-proxy.pdf, but this time with the above setup
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.43\textheight,keepaspectratio]{module-b5-vpn-reverse-proxy}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -487,7 +618,11 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 \begin{frame}{Getting around NAT}{Cloud computer as a reverse proxy}
   \live{My self-hosted \texttt{deluge} service setup.}
 
-  % TODO: Embed a diagram, showing how the setup of the deluge.yanlincs.com service works (see my nix repo)
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.72\textheight,keepaspectratio]{module-b5-deluge}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
@@ -496,10 +631,14 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 \begin{frame}{Getting around NAT}{Managed tunnels}
   \begin{itemize}
     \item Ready-to-use cloud proxy solutions. Technically similar to the above setup, but no need to manage our own cloud computers and no configurations needed
-    \item Examples: Cloudflare Tunnel, % TODO: Add 2 more examples
+    \item Examples: Cloudflare Tunnel, ngrok, Tailscale Funnel
   \end{itemize}
 
-  % TODO: Embed a new diagram showing how cloudflare tunnel works
+  \begin{figure}[htpb]
+      \begin{center}
+          \includegraphics[width=0.95\textwidth,height=0.6\textheight,keepaspectratio]{module-b5-cloudflare-tunnel}
+      \end{center}
+  \end{figure}
 \note{
 }
 \end{frame}
